@@ -6,7 +6,8 @@ from typing import Optional
 class UsuarioSalida(BaseModel):
     idUsuario: str
     nombre: str
-    email: str
+    apellido: str
+    correo: str
     telefono: str
-    tipo: str  # Cliente, Barbero, Admin
+    tipo: str
     estatus: str

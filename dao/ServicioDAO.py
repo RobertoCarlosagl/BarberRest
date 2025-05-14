@@ -1,22 +1,19 @@
 from models.ServicioModel import ServiciosSalida
-from bson import ObjectId
 
 class ServicioDAO:
     def __init__(self, db):
         self.db = db
 
-    #logica para definir el servicio de gestión de servicios con la operación de consultar servicios por Barberia
     def consultarServiciosPorBarberia(self, idBarberia: str) -> ServiciosSalida:
         salida = ServiciosSalida(estatus="", mensaje="", servicios=[])
         try:
-            servicios = list(self.db.servicios.find(
-                {"idBarberia": ObjectId(idBarberia)},
-                {"_id": 0, "tipo": 1}
-            ))
+            # Cambiamos "idBarberia" a "barberia_id" para que coincida con tu JSON
+            servicios = list(self.db.servicios.find({"barberia_id": int(idBarberia)}))
+
             if servicios:
                 salida.estatus = "OK"
                 salida.mensaje = "Servicios encontrados"
-                salida.servicios = [s["tipo"] for s in servicios if "tipo" in s]
+                salida.servicios = [s["nombre"] for s in servicios if "nombre" in s]
             else:
                 salida.estatus = "ERROR"
                 salida.mensaje = "No se encontraron servicios para esta barbería"

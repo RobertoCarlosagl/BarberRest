@@ -9,7 +9,7 @@ class BarberiaDAO:
     #logica para definir el servicio de gestión de barberias con la operación de consultar barberias por su ID
     def consultarBarberiaPorId(self, idBarberia: str) -> BarberiaSalida | Salida:
         try:
-            barberia = self.db.barberias.find_one({"_id": ObjectId(idBarberia)})
+            barberia = self.db.barberias.find_one({"_id": int(idBarberia)})
             if barberia:
                 barberia["idBarberia"] = str(barberia["_id"])
                 return BarberiaSalida(**barberia)
