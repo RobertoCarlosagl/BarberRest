@@ -1,0 +1,47 @@
+[
+  {
+    "_id": 1,
+    "nombre": "Juan",
+    "apellido": "Pérez",
+    "correo": "juan@gmail.com",
+    "telefono": "3511234567",
+    "tipo": "Cliente",
+    "estatus": "Activo"
+  },
+  {
+    "_id": 2,
+    "nombre": "Carlos",
+    "apellido": "Ramírez",
+    "correo": "carlos@gmail.com",
+    "telefono": "3512345678",
+    "tipo": "Barbero",
+    "estatus": "Activo"
+  },
+  {
+    "_id": 3,
+    "nombre": "Sofía",
+    "apellido": "López",
+    "correo": "sofia@gmail.com",
+    "telefono": "3513456789",
+    "tipo": "Cliente",
+    "estatus": "Inactivo"
+  },
+  {
+    "_id": 4,
+    "nombre": "Erika",
+    "apellido": "Mendoza",
+    "correo": "erika@gmail.com",
+    "telefono": "3514567890",
+    "tipo": "Cliente",
+    "estatus": "Activo"
+  },
+  {
+    "_id": 5,
+    "nombre": "Luis",
+    "apellido": "Torres",
+    "correo": "luis@gmail.com",
+    "telefono": "3515678901",
+    "tipo": "Barbero",
+    "estatus": "Activo"
+  }
+]

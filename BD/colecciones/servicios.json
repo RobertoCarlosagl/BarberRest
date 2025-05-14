@@ -1,0 +1,66 @@
+[
+  {
+    "_id": 101,
+    "nombre": "Corte de Cabello",
+    "precio": 150.00,
+    "especialidad": "Cabello",
+    "caracteristicas": "Incluye lavado y peinado",
+    "barberia_id": 1
+  },
+  {
+    "_id": 102,
+    "nombre": "Fade Clásico",
+    "precio": 160.00,
+    "especialidad": "Cabello",
+    "caracteristicas": "Corte moderno con degradado",
+    "barberia_id": 1
+  },
+  {
+    "_id": 103,
+    "nombre": "Tinte de Cabello",
+    "precio": 250.00,
+    "especialidad": "Color",
+    "caracteristicas": "Tinte semipermanente con tonos naturales",
+    "barberia_id": 2
+  },
+  {
+    "_id": 104,
+    "nombre": "Afeitado Clásico",
+    "precio": 120.00,
+    "especialidad": "Barba",
+    "caracteristicas": "Afeitado con navaja y toalla caliente",
+    "barberia_id": 2
+  },
+  {
+    "_id": 105,
+    "nombre": "Perfilado de Cejas",
+    "precio": 80.00,
+    "especialidad": "Cejas",
+    "caracteristicas": "Perfilado con hilo o navaja",
+    "barberia_id": 3
+  },
+  {
+    "_id": 106,
+    "nombre": "Diseño de Barba",
+    "precio": 140.00,
+    "especialidad": "Barba",
+    "caracteristicas": "Diseño personalizado y perfilado",
+    "barberia_id": 3
+  },
+  {
+    "_id": 107,
+    "nombre": "Tratamiento Capilar",
+    "precio": 200.00,
+    "especialidad": "Cabello",
+    "caracteristicas": "Incluye mascarilla hidratante y masaje",
+    "barberia_id": 1
+  },
+  {
+    "_id": 108,
+    "nombre": "Corte Infantil",
+    "precio": 100.00,
+    "especialidad": "Niños",
+    "caracteristicas": "Corte rápido con estilo",
+    "barberia_id": 4
+  }
+]

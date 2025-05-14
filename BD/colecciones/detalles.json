@@ -1,0 +1,44 @@
+[
+  {
+    "_id": 301,
+    "cita_id": 201,
+    "servicio_id": 101,
+    "precio": 150.00
+  },
+  {
+    "_id": 302,
+    "cita_id": 201,
+    "servicio_id": 107,
+    "precio": 200.00
+  },
+  {
+    "_id": 303,
+    "cita_id": 202,
+    "servicio_id": 102,
+    "precio": 160.00
+  },
+  {
+    "_id": 304,
+    "cita_id": 203,
+    "servicio_id": 104,
+    "precio": 120.00
+  },
+  {
+    "_id": 305,
+    "cita_id": 204,
+    "servicio_id": 106,
+    "precio": 140.00
+  },
+  {
+    "_id": 306,
+    "cita_id": 205,
+    "servicio_id": 105,
+    "precio": 80.00
+  },
+  {
+    "_id": 307,
+    "cita_id": 205,
+    "servicio_id": 108,
+    "precio": 100.00
+  }
+]

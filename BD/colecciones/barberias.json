@@ -1,0 +1,30 @@
+[
+  {
+    "_id": 1,
+    "nombre": "Barbería El Estilo",
+    "direccion": "Av. Siempre Viva 742",
+    "telefono": "3511122334",
+    "estatus": "Activa"
+  },
+  {
+    "_id": 2,
+    "nombre": "Barber Bros",
+    "direccion": "Calle Hidalgo 123",
+    "telefono": "3512233445",
+    "estatus": "Activa"
+  },
+  {
+    "_id": 3,
+    "nombre": "Estilo Urbano",
+    "direccion": "Blvd. Zamora-Jacona 456",
+    "telefono": "3513344556",
+    "estatus": "Activa"
+  },
+  {
+    "_id": 4,
+    "nombre": "Corte y Arte",
+    "direccion": "Plaza La Estación, Local 12",
+    "telefono": "3514455667",
+    "estatus": "Inactiva"
+  }
+]

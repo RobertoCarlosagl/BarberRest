@@ -1,0 +1,30 @@
+[
+  {
+    "_id": 1,
+    "usuario_id": 1,
+    "especialidad": "Cortes Clásicos",
+    "horario": "09:00 - 18:00",
+    "barberia_id": 1
+  },
+  {
+    "_id": 2,
+    "usuario_id": 5,
+    "especialidad": "Fade & Taper",
+    "horario": "10:00 - 19:00",
+    "barberia_id": 1
+  },
+  {
+    "_id": 3,
+    "usuario_id": 7,
+    "especialidad": "Colorimetría de Cabello",
+    "horario": "11:00 - 17:00",
+    "barberia_id": 2
+  },
+  {
+    "_id": 4,
+    "usuario_id": 9,
+    "especialidad": "Afeitado Tradicional",
+    "horario": "08:00 - 16:00",
+    "barberia_id": 2
+  }
+]
