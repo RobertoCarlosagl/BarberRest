@@ -1,5 +1,5 @@
-from models.UsuarioModel import UsuarioSalida
-from models.RespuestaModel import Salida
+from App.models.UsuarioModel import UsuarioSalida
+from App.models.RespuestaModel import Salida
 
 class UsuarioDAO:
     def __init__(self, db):

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Request
-from dao.UsuarioDAO import UsuarioDAO
-from models.UsuarioModel import UsuarioSalida
-from models.RespuestaModel import Salida
+from App.dao.UsuarioDAO import UsuarioDAO
+from App.models.UsuarioModel import UsuarioSalida
+from App.models.RespuestaModel import Salida
 router = APIRouter(prefix="/usuarios", tags=["Usuarios"])
 
 

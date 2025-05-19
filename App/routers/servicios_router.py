@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Request
-from dao.ServicioDAO import ServicioDAO
-from models.ServicioModel import ServiciosSalida
+from App.dao.ServicioDAO import ServicioDAO
+from App.models.ServicioModel import ServiciosSalida
 
 router = APIRouter(prefix="/barberias", tags=["Servicios"])
 

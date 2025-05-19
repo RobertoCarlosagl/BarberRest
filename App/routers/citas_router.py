@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Request
-from models.CitaModel import CitaInsert, Salida, CitaCancelacion, CitaDetalle
-from dao.CitaDAO import CitaDAO
+from App.models.CitaModel import CitaInsert, Salida, CitaCancelacion, CitaDetalle
+from App.dao.CitaDAO import CitaDAO
 
 router = APIRouter(prefix="/citas", tags=["Citas"])
 

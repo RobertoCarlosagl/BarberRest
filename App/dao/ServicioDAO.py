@@ -1,4 +1,4 @@
-from models.ServicioModel import ServiciosSalida
+from App.models.ServicioModel import ServiciosSalida
 
 class ServicioDAO:
     def __init__(self, db):

@@ -1,6 +1,6 @@
 from bson import ObjectId
-from models.BarberiaModel import BarberiaSalida
-from models.RespuestaModel import Salida
+from App.models.BarberiaModel import BarberiaSalida
+from App.models.RespuestaModel import Salida
 
 class BarberiaDAO:
     def __init__(self, db):

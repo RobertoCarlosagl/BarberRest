@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Request
-from dao.BarberiaDAO import BarberiaDAO
-from models.BarberiaModel import BarberiaSalida
-from models.RespuestaModel import Salida
+from App.dao.BarberiaDAO import BarberiaDAO
+from App.models.BarberiaModel import BarberiaSalida
+from App.models.RespuestaModel import Salida
 
 router = APIRouter(prefix="/barberias", tags=["Barberías"])
 

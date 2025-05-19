@@ -1,5 +1,5 @@
-from models.CitaModel import CitaInsert, CitaDetalle, CitaCancelacion
-from models.RespuestaModel import Salida
+from App.models.CitaModel import CitaInsert, CitaDetalle, CitaCancelacion
+from App.models.RespuestaModel import Salida
 from fastapi.encoders import jsonable_encoder
 from datetime import datetime
 from bson import ObjectId
