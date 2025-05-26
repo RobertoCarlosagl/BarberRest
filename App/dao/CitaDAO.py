@@ -1,4 +1,4 @@
-from App.models.CitaModel import CitaInsert, CitaDetalle, CitaCancelacion
+from App.models.CitaModel import CitaInsert, CitaDetalle, CitaCancelacion,HistorialSalida, HistorialCita
 from App.models.RespuestaModel import Salida
 from fastapi.encoders import jsonable_encoder
 from datetime import datetime
@@ -68,4 +68,51 @@ class CitaDAO:
             print("Error al cancelar cita:", ex)
             salida.estatus = "ERROR"
             salida.mensaje = "Error inesperado al cancelar la cita"
+        return salida
+
+    def confirmarCita(self, idCita: str) -> Salida:
+        salida = Salida(estatus="", mensaje="")
+        try:
+            cita = self.db.citas.find_one({
+                "_id": ObjectId(idCita),
+                "estado": {"$in": ["Pendiente", "Agendada"]}
+            })
+
+            if cita:
+                resultado = self.db.citas.update_one(
+                    {"_id": ObjectId(idCita)},
+                    {"$set": {"estado": "Confirmada"}}
+                )
+                if resultado.modified_count == 1:
+                    salida.estatus = "OK"
+                    salida.mensaje = "Cita confirmada correctamente"
+                else:
+                    salida.estatus = "ERROR"
+                    salida.mensaje = "No se pudo confirmar la cita"
+            else:
+                salida.estatus = "ERROR"
+                salida.mensaje = "La cita no existe o no puede confirmarse"
+        except Exception as ex:
+            print("Error al confirmar cita:", ex)
+            salida.estatus = "ERROR"
+            salida.mensaje = "Error inesperado al confirmar cita"
+        return salida
+
+    def consultarHistorialPorUsuario(self, idUsuario: int) -> HistorialVistaSalida:
+        salida = HistorialVistaSalida(estatus="", mensaje="", historial=[])
+        try:
+            historial = list(self.db.historialUsuarioView.find({"idCliente": idUsuario}))
+            if historial:
+                for cita in historial:
+                    cita["idCita"] = str(cita["idCita"])
+                salida.estatus = "OK"
+                salida.mensaje = "Historial encontrado desde vista"
+                salida.historial = historial
+            else:
+                salida.estatus = "ERROR"
+                salida.mensaje = "No hay citas para este usuario"
+        except Exception as e:
+            print("Error:", e)
+            salida.estatus = "ERROR"
+            salida.mensaje = "Error inesperado"
         return salida

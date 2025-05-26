@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Request
-from App.models.CitaModel import CitaInsert, Salida, CitaCancelacion, CitaDetalle
+from App.models.CitaModel import CitaInsert, Salida, CitaCancelacion, CitaDetalle, HistorialVistaSalida
 from App.dao.CitaDAO import CitaDAO
 
 router = APIRouter(prefix="/citas", tags=["Citas"])
@@ -21,3 +21,13 @@ def cancelar_cita(idCita: str, cancelacion: CitaCancelacion, request: Request) -
 def consultar_cita_por_id(idCita: str, request: Request):
     dao = CitaDAO(request.app.db)
     return dao.consultarCitaPorId(idCita)
+
+@router.put("/citas/{idCita}/confirmar", response_model=Salida)
+def confirmar_cita(idCita: str, request: Request):
+    dao = CitaDAO(request.app.db)
+    return dao.confirmarCita(idCita)
+
+@router.get("/usuario/{idUsuario}", response_model=HistorialVistaSalida)
+def consultar_historial_usuario(idUsuario: int, request: Request):
+    dao = CitaDAO(request.app.db)
+    return dao.consultarHistorialPorUsuario(idUsuario)

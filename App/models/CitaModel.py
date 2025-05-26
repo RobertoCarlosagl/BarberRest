@@ -30,3 +30,21 @@ class CitaDetalle(BaseModel):
     estado: str
     servicios: List[str]
     motivoCancelacion: Optional[str] = None
+
+class CitaConfirmacion(BaseModel):
+    confirmadoPor: str  # opcional si quieres registrar quien confirma
+
+class HistorialVistaCita(BaseModel):
+    idCita: str
+    fecha: str
+    hora: str
+    estado: str
+    servicios: List[str]
+    barbero: dict
+    cliente: Optional[dict]
+
+class HistorialVistaSalida(BaseModel):
+    estatus: str
+    mensaje: str
+    historial: Optional[List[HistorialVistaCita]] = []
+
