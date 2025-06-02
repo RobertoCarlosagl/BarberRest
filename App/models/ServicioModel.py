@@ -1,8 +1,19 @@
 from pydantic import BaseModel
 from typing import List, Optional
 
-#clase para definir el servicio de gestión de servicios con la operación de consultar servicios por Barberia
+class Servicio(BaseModel):
+    idServicio: int
+    nombre: str
+    precio: float
+    especialidad: str
+    caracteristicas: str
+
 class ServiciosSalida(BaseModel):
     estatus: str
     mensaje: str
-    servicios: Optional[List[str]] = None
+    servicios: Optional[List[Servicio]] = []
+
+class ServicioSalida(BaseModel):
+    estatus: str
+    mensaje: str
+    servicio: Optional[Servicio] = None

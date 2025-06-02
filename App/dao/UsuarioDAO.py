@@ -1,4 +1,4 @@
-from App.models.UsuarioModel import UsuarioSalida
+from App.models.UsuarioModel import UsuarioSalida, LoginRespuesta, UsuarioAutenticado
 from App.models.RespuestaModel import Salida
 
 class UsuarioDAO:
@@ -18,3 +18,30 @@ class UsuarioDAO:
         except Exception as e:
             print("Error al consultar usuario:", e)
             return Salida(estatus="ERROR", mensaje="Error inesperado al consultar usuario")
+
+    def autenticarUsuario(self, correo: str, password: str) -> LoginRespuesta:
+        salida = LoginRespuesta(estatus="", mensaje="", usuario=None)
+        try:
+            usuario = self.db.usuarios.find_one({
+                "correo": correo,
+                "password": password,
+                "estatus": "Activo"
+            })
+            if usuario:
+                salida.estatus = "OK"
+                salida.mensaje = "Usuario autenticado"
+                salida.usuario = UsuarioAutenticado(
+                    idUsuario=str(usuario["_id"]),
+                    nombre=usuario["nombre"],
+                    correo=usuario["correo"],
+                    tipo=usuario["tipo"],
+                    estatus=usuario["estatus"]
+                )
+            else:
+                salida.estatus = "ERROR"
+                salida.mensaje = "Credenciales incorrectas"
+        except Exception as ex:
+            print("Error al autenticar:", ex)
+            salida.estatus = "ERROR"
+            salida.mensaje = "Error inesperado en autenticación"
+        return salida

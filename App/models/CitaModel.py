@@ -11,11 +11,6 @@ class CitaInsert(BaseModel):
     hora: time
     servicios: List[str]
 
-class Salida(BaseModel):
-    estatus: str
-    mensaje: str
-
-
 #Clase para definir la operación de cancelar cita
 class CitaCancelacion(BaseModel):
     motivo: str
@@ -35,16 +30,14 @@ class CitaConfirmacion(BaseModel):
     confirmadoPor: str  # opcional si quieres registrar quien confirma
 
 class HistorialVistaCita(BaseModel):
-    idCita: str
+    idCita: int
     fecha: str
     hora: str
     estado: str
-    servicios: List[str]
-    barbero: dict
-    cliente: Optional[dict]
+    servicios: List[int]
 
 class HistorialVistaSalida(BaseModel):
     estatus: str
     mensaje: str
-    historial: Optional[List[HistorialVistaCita]] = []
+    historial: List[HistorialVistaCita]
 

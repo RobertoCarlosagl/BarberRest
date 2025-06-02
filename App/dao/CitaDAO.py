@@ -1,8 +1,7 @@
-from App.models.CitaModel import CitaInsert, CitaDetalle, CitaCancelacion,HistorialSalida, HistorialCita
+from App.models.CitaModel import CitaInsert, CitaDetalle, CitaCancelacion, HistorialVistaSalida, HistorialVistaCita
 from App.models.RespuestaModel import Salida
 from fastapi.encoders import jsonable_encoder
 from datetime import datetime
-from bson import ObjectId
 
 
 class CitaDAO:
@@ -13,12 +12,14 @@ class CitaDAO:
         salida = Salida(estatus="", mensaje="")
         try:
             nueva_cita = jsonable_encoder(cita)
+            nueva_cita["_id"] = self.db.citas.count_documents({}) + 200  # ejemplo simple
             nueva_cita["fechaRegistro"] = datetime.now()
-            nueva_cita["estado"] = "Pendiente"  # ✅ campo crucial
+            nueva_cita["estado"] = "Pendiente"
+
             resultado = self.db.citas.insert_one(nueva_cita)
 
             salida.estatus = "OK"
-            salida.mensaje = f"Cita agendada con éxito con id: {str(resultado.inserted_id)}"
+            salida.mensaje = f"Cita agendada con éxito con id: {str(nueva_cita['_id'])}"
         except Exception as ex:
             print("Error al agendar cita:", ex)
             salida.estatus = "ERROR"
@@ -27,7 +28,7 @@ class CitaDAO:
 
     def consultarCitaPorId(self, idCita: str) -> CitaDetalle | Salida:
         try:
-            cita = self.db.citas.find_one({"_id": ObjectId(idCita)})
+            cita = self.db.citas.find_one({"_id": int(idCita)})
             if cita:
                 cita["idCita"] = str(cita["_id"])
                 return CitaDetalle(**cita)
@@ -41,13 +42,13 @@ class CitaDAO:
         salida = Salida(estatus="", mensaje="")
         try:
             cita = self.db.citas.find_one({
-                "_id": ObjectId(idCita),
+                "_id": int(idCita),
                 "estado": {"$in": ["Pendiente", "Confirmada"]}
             })
 
             if cita:
                 resultado = self.db.citas.update_one(
-                    {"_id": ObjectId(idCita)},
+                    {"_id": int(idCita)},
                     {
                         "$set": {
                             "estado": "Cancelada",
@@ -74,13 +75,13 @@ class CitaDAO:
         salida = Salida(estatus="", mensaje="")
         try:
             cita = self.db.citas.find_one({
-                "_id": ObjectId(idCita),
+                "_id": int(idCita),
                 "estado": {"$in": ["Pendiente", "Agendada"]}
             })
 
             if cita:
                 resultado = self.db.citas.update_one(
-                    {"_id": ObjectId(idCita)},
+                    {"_id": int(idCita)},
                     {"$set": {"estado": "Confirmada"}}
                 )
                 if resultado.modified_count == 1:
