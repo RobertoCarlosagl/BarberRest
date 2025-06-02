@@ -1,47 +1,72 @@
 [
   {
-    "_id": 1,
+    "idUsuario": 1,
     "nombre": "Juan",
     "apellido": "Pérez",
     "correo": "juan@gmail.com",
     "telefono": "3511234567",
     "tipo": "Cliente",
-    "estatus": "Activo"
+    "estatus": "Activo",
+    "password": "1234"
   },
   {
-    "_id": 2,
+    "idUsuario": 2,
     "nombre": "Carlos",
     "apellido": "Ramírez",
     "correo": "carlos@gmail.com",
     "telefono": "3512345678",
     "tipo": "Barbero",
-    "estatus": "Activo"
+    "estatus": "Activo",
+    "password": "2345"
   },
   {
-    "_id": 3,
+    "idUsuario": 3,
     "nombre": "Sofía",
     "apellido": "López",
     "correo": "sofia@gmail.com",
     "telefono": "3513456789",
     "tipo": "Cliente",
-    "estatus": "Inactivo"
+    "estatus": "Inactivo",
+    "password": "3456"
   },
   {
-    "_id": 4,
+    "idUsuario": 4,
     "nombre": "Erika",
-    "apellido": "Mendoza",
+    "apellido": "Torres",
     "correo": "erika@gmail.com",
     "telefono": "3514567890",
     "tipo": "Cliente",
-    "estatus": "Activo"
+    "estatus": "Activo",
+    "password": "4567"
   },
   {
-    "_id": 5,
+    "idUsuario": 5,
     "nombre": "Luis",
     "apellido": "Torres",
     "correo": "luis@gmail.com",
     "telefono": "3515678901",
     "tipo": "Barbero",
-    "estatus": "Activo"
+    "estatus": "Activo",
+    "password": "5678"
+  },
+  {
+    "idUsuario": 6,
+    "nombre": "Yahir",
+    "apellido": "Aguilera",
+    "correo": "yahir@gmail.com",
+    "telefono": "3512233445",
+    "tipo": "Barbero",
+    "estatus": "Activo",
+    "password": "yahir123"
+  },
+  {
+    "idUsuario": 7,
+    "nombre": "Liborio",
+    "apellido": "Castel",
+    "correo": "liborio@gmail.com",
+    "telefono": "3519988776",
+    "tipo": "Barbero",
+    "estatus": "Activo",
+    "password": "liborio123"
   }
 ]
