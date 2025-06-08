@@ -1,21 +1,20 @@
 from pydantic import BaseModel
 from datetime import date, time
-from typing import List
-from typing import Optional
+from typing import List, Optional
 
-#CLase para definir la operación de Agendar Cita
+# Clase para definir la operación de agendar una cita
 class CitaInsert(BaseModel):
     idCliente: int
     idBarbero: int
     fecha: date
     hora: time
-    servicios: List[str]
+    servicios: List[int]  # ✅ ahora acepta IDs numéricos
 
-#Clase para definir la operación de cancelar cita
+# Clase para cancelar una cita
 class CitaCancelacion(BaseModel):
     motivo: str
 
-#Clase para definir la operación de consultar cita por ID
+# Clase para consultar cita por ID
 class CitaDetalle(BaseModel):
     idCita: str
     idCliente: int
@@ -23,12 +22,14 @@ class CitaDetalle(BaseModel):
     fecha: date
     hora: time
     estado: str
-    servicios: List[str]
+    servicios: List[int]  # ✅ corregido también aquí
     motivoCancelacion: Optional[str] = None
 
+# Clase opcional si decides registrar quién confirma
 class CitaConfirmacion(BaseModel):
-    confirmadoPor: str  # opcional si quieres registrar quien confirma
+    confirmadoPor: str
 
+# Vista individual del historial del cliente
 class HistorialVistaCita(BaseModel):
     idCita: int
     fecha: str
@@ -36,8 +37,15 @@ class HistorialVistaCita(BaseModel):
     estado: str
     servicios: List[int]
 
+# Salida del historial completo
 class HistorialVistaSalida(BaseModel):
     estatus: str
     mensaje: str
     historial: List[HistorialVistaCita]
 
+# Clase para actualizar una cita existente
+class CitaActualizacion(BaseModel):
+    idBarbero: int
+    fecha: date
+    hora: time
+    servicios: List[int]  # ✅ también aquí

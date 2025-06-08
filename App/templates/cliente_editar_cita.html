@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Cita - StyleCut</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url("/static/images/barber.jpeg");
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+        }
+        .form-container {
+            background-color: rgba(255,255,255,0.95);
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 600px;
+            margin: auto;
+            margin-top: 50px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h3 class="text-center mb-4">Editar Cita</h3>
+
+        <form method="post">
+            <!-- Barbería -->
+            <div class="mb-3">
+                <label for="barberia" class="form-label">Barbería</label>
+                <select id="barberia" name="barberia_id" class="form-select" required>
+                    {% for b in barberias %}
+                        <option value="{{ b._id }}" {% if b._id == cita.barberia_id %}selected{% endif %}>{{ b.nombre }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Barbero -->
+            <div class="mb-3">
+                <label for="barbero" class="form-label">Barbero</label>
+                <select id="barbero" name="barbero_id" class="form-select" required>
+                    <!-- Se llenará por JS -->
+                </select>
+            </div>
+
+            <!-- Servicios -->
+            <div class="mb-3">
+                <label class="form-label">Servicios</label>
+                <div id="servicios">
+                    <!-- Se llenará por JS -->
+                </div>
+            </div>
+
+            <!-- Fecha -->
+            <div class="mb-3">
+                <label class="form-label">Fecha</label>
+                <input type="date" name="fecha" id="fecha" class="form-control" value="{{ cita.fecha }}" required>
+            </div>
+
+            <!-- Hora -->
+            <div class="mb-3">
+                <label class="form-label">Hora</label>
+                <input type="time" name="hora" class="form-control" value="{{ cita.hora }}" required>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Actualizar Cita</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const barberos = {{ barberos_json | safe }};
+        const servicios = {{ servicios_json | safe }};
+        const cita = {{ cita | tojson }};
+
+        const barberiaSelect = document.getElementById("barberia");
+        const barberoSelect = document.getElementById("barbero");
+        const serviciosDiv = document.getElementById("servicios");
+        const fechaInput = document.getElementById("fecha");
+
+        const today = new Date().toISOString().split("T")[0];
+        fechaInput.setAttribute("min", today);
+
+        function cargarBarberos() {
+            const barberiaId = barberiaSelect.value;
+            barberoSelect.innerHTML = '';
+            const filtrados = barberos.filter(b => b.idBarberia == barberiaId);
+            filtrados.forEach(barb => {
+                const option = document.createElement("option");
+                option.value = barb.idBarbero;
+                option.textContent = barb.usuario.nombre + " " + barb.usuario.apellido;
+                if (barb.idBarbero == cita.idBarbero) option.selected = true;
+                barberoSelect.appendChild(option);
+            });
+        }
+
+        function cargarServicios() {
+            const barberiaId = barberiaSelect.value;
+            serviciosDiv.innerHTML = '';
+            const filtrados = servicios.filter(s => s.barberia_id == barberiaId);
+            filtrados.forEach(serv => {
+                const check = document.createElement("div");
+                check.classList.add("form-check");
+                check.innerHTML = `
+                    <input class="form-check-input" type="checkbox" name="servicios" value="${serv._id}" id="s${serv._id}" ${cita.servicios.includes(serv._id) ? 'checked' : ''}>
+                    <label class="form-check-label" for="s${serv._id}">${serv.nombre} - $${serv.precio}</label>
+                `;
+                serviciosDiv.appendChild(check);
+            });
+        }
+
+        barberiaSelect.addEventListener("change", () => {
+            cargarBarberos();
+            cargarServicios();
+        });
+
+        cargarBarberos();
+        cargarServicios();
+    </script>
+</body>
+</html>
